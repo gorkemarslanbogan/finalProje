@@ -1,18 +1,18 @@
+import 'package:final_project/product/widget/appbar.dart';
 import 'package:final_project/product/widget/divider_menu_icon.dart';
 import 'package:final_project/product/widget/theme_button.dart';
 import 'package:final_project/view/screen/homescreen.dart';
-import 'package:final_project/viewmodel/homescreen_provider.dart';
 import 'package:final_project/viewmodel/theme_managment.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
      runApp(MultiProvider(
     builder: ((context, child) {
       return const MainScreen();
     }),
     providers: [
-      ChangeNotifierProvider<homescreen_provider>(create: (_) => homescreen_provider()),
       ChangeNotifierProvider<theme_provider>(create: (_) => theme_provider())
       ]));
 }
@@ -25,25 +25,9 @@ class MainScreen extends StatelessWidget {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: context.watch<theme_provider>().theme,
-        home: Scaffold(
-            drawer: Drawer(
-              child: ListView(
-                padding: EdgeInsets.zero,
-              children:  const [
-                 _drawerheader(),
-                 DividerIcon(title: "Anasayfa", icon: Icons.home_filled),
-                 SizedBox(height: 20,),
-                 DividerIcon(title: "Ürünler", icon: Icons.production_quantity_limits_outlined),
-                 SizedBox(height: 20,),
-                 DividerIcon(title: "Çalışan Performansı", icon: Icons.perm_device_information_outlined),
-                 Padding(
-                   padding: EdgeInsets.symmetric(horizontal:20.0),
-                   child: Divider(),
-                 ),
-              ],
-            )),
-            appBar: AppBar(centerTitle: true, title: const Text('Stock Manager')),
-            body: const HomeScreen()),
+        home: const Scaffold(
+            appBar: MyAppbar(),
+            body: HomeScreen()),
       );
   }
 

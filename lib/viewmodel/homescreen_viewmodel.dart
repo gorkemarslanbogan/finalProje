@@ -5,9 +5,8 @@ import 'dart:convert';
 import 'package:final_project/model/StockData.dart';
 import 'package:final_project/view/screen/details.dart';
 import 'package:final_project/view/screen/homescreen.dart';
-import 'package:final_project/viewmodel/homescreen_provider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 abstract class homescreen_viewmodel extends State<HomeScreen> {
   
@@ -23,9 +22,13 @@ abstract class homescreen_viewmodel extends State<HomeScreen> {
     changeLoading();
     final dummyData = await DefaultAssetBundle.of(context).loadString(_path);
     List<dynamic> decodedJson = jsonDecode(dummyData);
-    item = decodedJson.map((e) => StockData.fromJson(e)).toList();
+    item = await compute(_getData, decodedJson);
     changeLoading();
     setState(() {});
+  }
+
+  static Future<List<StockData>> _getData(List<dynamic> data) async {
+   return data.map((e) => StockData.fromJson(e)).toList(); 
   }
   VoidCallbackAction? gotoDetails(StockData model)
   {
@@ -34,4 +37,6 @@ abstract class homescreen_viewmodel extends State<HomeScreen> {
   void changeLoading() {
     isLoading = !isLoading;
   }
+
+
 }

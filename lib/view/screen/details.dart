@@ -1,5 +1,6 @@
 import 'package:d_chart/d_chart.dart';
 import 'package:final_project/model/StockData.dart';
+import 'package:final_project/product/widget/appbar.dart';
 import 'package:flutter/material.dart';
 
 
@@ -9,7 +10,7 @@ class Details extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: const MyAppbar(backButton: true),
       body: Column(
         children: [
           Expanded(child: _modelInformation()),

@@ -62,3 +62,4 @@ class StockData {
     return data;
   }
 }
+

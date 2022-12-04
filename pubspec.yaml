@@ -42,6 +42,8 @@ dependencies:
   provider: ^6.0.4
   #Chart Graphic
   d_chart: ^0.1.0
+  #barcode_scanner
+  flutter_barcode_scanner: ^2.0.0
   
 
 
