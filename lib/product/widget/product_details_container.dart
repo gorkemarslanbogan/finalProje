@@ -1,3 +1,4 @@
+import 'package:final_project/product/utils/app_utilts.dart';
 import 'package:flutter/material.dart';
 
 
@@ -12,13 +13,13 @@ class CustomContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: MediaQuery.of(context).size.height *0.23,
-        width: MediaQuery.of(context).size.width *0.40,
+        width: MediaQuery.of(context).size.width *0.44,
         decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(15)),
+        borderRadius: AppUtility.ContainerBorderRadius,
         color: background,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(14.0),
+        padding: AppUtility.ContainerGeneralPadding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

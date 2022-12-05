@@ -15,14 +15,14 @@ class _HomeScreenState extends homescreen_viewmodel {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
       child: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             const _containers(),
+              _containers(itemLength: item.length),
               _utility.twentyspace,
              const _productTexts(),
               _productListview(context)
@@ -69,18 +69,18 @@ class _productTexts extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .headline5
-              ?.copyWith(color: _utility.black, fontWeight: FontWeight.w300),
+              ?.copyWith(color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w300),
         ),
         TextButton.icon(
             onPressed: () {},
-            icon: const Icon(
+            icon: Icon(
               Icons.settings_input_component_rounded,
-              color: _utility.black,
+              color: Theme.of(context).colorScheme.onBackground,
             ),
             label: Text(
               "See All",
               style: Theme.of(context).textTheme.headline6?.copyWith(
-                  color: _utility.black, fontWeight: FontWeight.w300),
+                  color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w300),
             ))
       ],
     );
@@ -89,22 +89,22 @@ class _productTexts extends StatelessWidget {
 
 class _containers extends StatelessWidget {
   const _containers({
-    Key? key,
+    Key? key, required this.itemLength,
   }) : super(key: key);
-
+  final int itemLength;
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CustomContainer(
-          background: Colors.blue.shade400,
-          productCount: "1500",
+          background: Color(0xff0080f6),
+          productCount: itemLength.toString(),
           title: "Product In",
         ),
-        const CustomContainer(
-          background: Color.fromARGB(255, 58, 211, 137),
-          productCount: "500",
+         CustomContainer(
+          background: const Color(0xff00b2eb),
+          productCount: ((itemLength/2).floor()).toString(),
           title: "Product Out",
         )
       ],

@@ -12,8 +12,6 @@ class SeeAllProduct extends StatefulWidget {
 class _SeeAllProductState extends State<SeeAllProduct> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: MyAppbar(),
-      body: Center());
+    return Center();
   }
 }

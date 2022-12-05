@@ -1,7 +1,6 @@
 import 'package:final_project/product/scanner/barcode_scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 
 class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
@@ -13,15 +12,15 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
               systemOverlayStyle: SystemUiOverlayStyle.dark,
               actions: [
                 IconButton(onPressed: () async {
-                  String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode( "#ff6666","Kapat",true,ScanMode.BARCODE);
-                }, icon: const Icon(Icons.qr_code_scanner,color: Colors.black,)),
-                IconButton(onPressed: (){}, icon: const Icon(Icons.search,color: Colors.black,))
+                  BarcodeScanner.ScanBarcode();
+                }, icon:  Icon(Icons.qr_code_scanner,color: Theme.of(context).colorScheme.onBackground,)),
+                IconButton(onPressed: (){}, icon:  Icon(Icons.search,color:Theme.of(context).colorScheme.onBackground,))
               ],
               leading: (backButton == true) ? BackButton(color: Theme.of(context).colorScheme.shadow) : null,
-              backgroundColor: Theme.of(context).colorScheme.onPrimary,
+              backgroundColor: Colors.transparent,
               elevation: 0,
               title: Text('Stock Manager',style: Theme.of(context).textTheme.headline5?.copyWith(
-                color: Colors.black,
+                color: Theme.of(context).colorScheme.onBackground,
                 fontWeight: FontWeight.w300
               ),));
   }
