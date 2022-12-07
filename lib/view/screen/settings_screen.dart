@@ -1,5 +1,6 @@
 import 'package:final_project/product/utils/app_utilts.dart';
 import 'package:final_project/product/theme/theme_managment.dart';
+import 'package:final_project/product/widget/medium_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,7 @@ class SettingScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const _SettingText(),
+          const mediumText(title: "Settings"),
           AppUtility.GeneralSpace,
           AppUtility.GeneralSpace,
           const _SmallText(title: "Account"),
@@ -28,46 +29,37 @@ class SettingScreen extends StatelessWidget {
           AppUtility.GeneralSpace,
           const _SmallText(title: "Settings"),
           AppUtility.GeneralSpace,
-            _ListTile(
-            circleBackgroundColor: Theme.of(context).colorScheme.primaryContainer,
-            trailingWidget: const goButton(),
-            iconColor:  Theme.of(context).colorScheme.onPrimaryContainer,
-            title: "Language", icon:Icons.language_sharp ,),
-            SizedBox(height: MediaQuery.of(context).size.height*0.0250,),
-            _ListTile(
-                icon: Icons.dark_mode,
-                circleBackgroundColor:Theme.of(context).colorScheme.primary,
-                 iconColor: Theme.of(context).colorScheme.onPrimary,
-                 title: "Dark Mode",
-                 trailingWidget: Switch(
-                  value: context.watch<theme_provider>().isLight, onChanged: (bool){
-                  context.read<theme_provider>().changeTheme();
-                 }),),
-            SizedBox(height: MediaQuery.of(context).size.height*0.0250,),
-          _ListTile(
-            icon: Icons.help_sharp,
-            circleBackgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-            iconColor: Theme.of(context).colorScheme.onSecondaryContainer,
-            title: "Help",
-            trailingWidget: goButton(),),
-          
+            Expanded(
+              flex: 2,
+              child: _ListTile(
+              circleBackgroundColor: Theme.of(context).colorScheme.primaryContainer,
+              trailingWidget: const goButton(),
+              iconColor:  Theme.of(context).colorScheme.onPrimaryContainer,
+              title: "Language", icon:Icons.language_sharp ,),
+            ),
+            Expanded(
+              flex: 2,
+              child: _ListTile(
+                  icon: Icons.dark_mode,
+                  circleBackgroundColor:Theme.of(context).colorScheme.primary,
+                   iconColor: Theme.of(context).colorScheme.onPrimary,
+                   title: "Dark Mode",
+                   trailingWidget: Switch(
+                    value: context.watch<theme_provider>().isLight, onChanged: (bool){
+                    context.read<theme_provider>().changeTheme();
+                   }),),
+            ),
+          Expanded(
+            flex: 2,
+            child: _ListTile(
+              icon: Icons.help_sharp,
+              circleBackgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+              iconColor: Theme.of(context).colorScheme.onSecondaryContainer,
+              title: "Help",
+              trailingWidget: const goButton(),)),
         ],
       ),
     );
-  }
-}
-
-class _SettingText extends StatelessWidget {
-  const _SettingText({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text("Settings", style: Theme.of(context).textTheme.headline4?.copyWith(
-      fontWeight: FontWeight.w400,
-      color: Theme.of(context).colorScheme.onBackground,
-    ),);
   }
 }
 

@@ -1,6 +1,8 @@
 import 'package:final_project/core/widget/loading_bar.dart';
+import 'package:final_project/viewmodel/homescreen_provider.dart';
 import 'package:final_project/viewmodel/homescreen_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../product/widget/product_details_container.dart';
 
@@ -22,7 +24,7 @@ class _HomeScreenState extends homescreen_viewmodel {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _containers(itemLength: item.length),
+              _containers(itemLength: context.read<HomeScreenProvider>().item.length),
               _utility.twentyspace,
              const _productTexts(),
               _productListview(context)
@@ -34,13 +36,14 @@ class _HomeScreenState extends homescreen_viewmodel {
   }
 
   Widget _productListview(BuildContext context) {
-    return isLoading ? const LoadingBar() : SizedBox(
+    return SizedBox(
               height: MediaQuery.of(context).size.height *0.80,
               width: MediaQuery.of(context).size.width,
               child:  ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: (item.length >50) ? 20 : item.length,
+                itemCount: context.read<HomeScreenProvider>().item.length,
                 itemBuilder: (context, index) {
+                  final item = context.read<HomeScreenProvider>().item;
                   return ListTile(
                     onTap: () => gotoDetails(item[index]),
                     title: Text(item[index].customer ?? ""),
