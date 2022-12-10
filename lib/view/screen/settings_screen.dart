@@ -13,23 +13,35 @@ class SettingScreen extends StatelessWidget {
     return Padding(
       padding: AppUtility.GeneralAppPadding,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const mediumText(title: "Settings"),
           AppUtility.GeneralSpace,
           AppUtility.GeneralSpace,
-          const _SmallText(title: "Account"),
-          AppUtility.GeneralSpace,
-          const _ListTile(
-            icon: Icons.person_outline_rounded,
-            circleBackgroundColor: Color(0xfff4f4f5), 
-          iconColor: Color(0xffb7bbc8),title: "Görkem Arslanboğan", subTitle: "Yönetici"),
-          AppUtility.GeneralSpace,
-          AppUtility.GeneralSpace,
-          const _SmallText(title: "Settings"),
-          AppUtility.GeneralSpace,
-            Expanded(
+          const Flexible(
+            flex: 2,
+            fit: FlexFit.tight,
+            child: mediumText(title: "Settings")),
+            AppUtility.GeneralSpace,
+          const Flexible(
+            flex: 2,
+            fit: FlexFit.tight,
+            child: _SmallText(title: "Account")),
+          const Flexible(
+            flex: 4,
+            fit: FlexFit.tight,
+            child: _ListTile(
+              icon: Icons.person_outline_rounded,
+              circleBackgroundColor: Color(0xfff4f4f5), 
+            iconColor: Color(0xffb7bbc8),title: "Görkem Arslanboğan", subTitle: "Yönetici"),
+          ),
+          const Flexible(
+            flex: 1,
+            fit: FlexFit.tight,
+            child: _SmallText(title: "Settings")),
+            AppUtility.GeneralSpace,
+            Flexible(
+              fit: FlexFit.tight,
               flex: 2,
               child: _ListTile(
               circleBackgroundColor: Theme.of(context).colorScheme.primaryContainer,
@@ -37,7 +49,8 @@ class SettingScreen extends StatelessWidget {
               iconColor:  Theme.of(context).colorScheme.onPrimaryContainer,
               title: "Language", icon:Icons.language_sharp ,),
             ),
-            Expanded(
+            Flexible(
+              fit: FlexFit.tight,
               flex: 2,
               child: _ListTile(
                   icon: Icons.dark_mode,
@@ -49,7 +62,7 @@ class SettingScreen extends StatelessWidget {
                     context.read<theme_provider>().changeTheme();
                    }),),
             ),
-          Expanded(
+          Flexible(
             flex: 2,
             child: _ListTile(
               icon: Icons.help_sharp,
