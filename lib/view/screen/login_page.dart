@@ -1,7 +1,10 @@
 import 'package:final_project/core/widget/loading_bar.dart';
 import 'package:final_project/product/utils/app_utilts.dart';
 import 'package:final_project/product/widget/medium_text_widget.dart';
+import 'package:final_project/view/screen/homescreen.dart';
+import 'package:final_project/view/screen/mainscreen.dart';
 import 'package:final_project/viewmodel/homescreen_provider.dart';
+import 'package:final_project/viewmodel/homescreen_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -73,14 +76,7 @@ class _columnItem extends StatelessWidget {
         child: _textField(hintText: "Password", inputType: TextInputType.visiblePassword, icon: Icon(Icons.visibility, color: Colors.grey,))),
       AppUtility.GeneralSpace,
       context.watch<HomeScreenProvider>().isLoading ?   
-      Flexible(flex: 3, child: LoadingBar()) : AnimatedCrossFade(
-        firstChild: const _LoginButton(),
-        secondChild: LoadingBar(),
-        duration: const Duration(seconds: 2),
-        crossFadeState: 
-        context.watch<HomeScreenProvider>().isLoading 
-        ? CrossFadeState.showSecond 
-        : CrossFadeState.showFirst)
+      Flexible(flex: 3, child: LoadingBar()) : const _LoginButton(),
     ],
      );
   }
@@ -100,9 +96,9 @@ class _LoginButton extends StatelessWidget {
          backgroundColor: Theme.of(context).colorScheme.onPrimary,
          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12)))
        ),
-      onPressed: () async {
-       await context.read<HomeScreenProvider>().fetchData(context);
-      }, 
+      onPressed:() {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MainScreen()));
+       },
       child:  Padding(
       padding:const EdgeInsets.symmetric(horizontal:18, vertical: 15),
       child: Text("Sign In", style: Theme.of(context).textTheme.headline6?.copyWith(

@@ -16,6 +16,7 @@ class HomeScreenProvider extends ChangeNotifier {
     List<dynamic> decodedJson = jsonDecode(dummyData);
     item = await compute(_getData, decodedJson);
     changeLoading();
+    notifyListeners();
   }
   static Future<List<StockData>> _getData(List<dynamic> data) async {
    return data.map((e) => StockData.fromJson(e)).toList(); 

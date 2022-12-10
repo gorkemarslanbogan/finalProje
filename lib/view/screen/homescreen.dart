@@ -1,9 +1,6 @@
-import 'package:final_project/core/widget/loading_bar.dart';
-import 'package:final_project/viewmodel/homescreen_provider.dart';
+import 'package:final_project/model/StockData.dart';
 import 'package:final_project/viewmodel/homescreen_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import '../../product/widget/product_details_container.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,10 +21,10 @@ class _HomeScreenState extends homescreen_viewmodel {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _containers(itemLength: context.read<HomeScreenProvider>().item.length),
+              _containers(itemLength: item.length),
               _utility.twentyspace,
-             const _productTexts(),
-              _productListview(context)
+              _productTexts(item: item),
+              isLoading ? const Center(child: CircularProgressIndicator(color: Colors.blue),) : _productListview(context)
             ],
           ),
         ),
@@ -37,13 +34,12 @@ class _HomeScreenState extends homescreen_viewmodel {
 
   Widget _productListview(BuildContext context) {
     return SizedBox(
-              height: MediaQuery.of(context).size.height *0.80,
-              width: MediaQuery.of(context).size.width,
-              child:  ListView.builder(
+                height: MediaQuery.of(context).size.height *0.80,
+                width: MediaQuery.of(context).size.width,
+                child:  ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: context.read<HomeScreenProvider>().item.length,
+                itemCount: item.length,
                 itemBuilder: (context, index) {
-                  final item = context.read<HomeScreenProvider>().item;
                   return ListTile(
                     onTap: () => gotoDetails(item[index]),
                     title: Text(item[index].customer ?? ""),
@@ -59,9 +55,9 @@ class _HomeScreenState extends homescreen_viewmodel {
 
 class _productTexts extends StatelessWidget {
   const _productTexts({
-    Key? key,
+    Key? key, required this.item,
   }) : super(key: key);
-
+final List<StockData>? item;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -75,7 +71,7 @@ class _productTexts extends StatelessWidget {
               ?.copyWith(color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w300),
         ),
         TextButton.icon(
-            onPressed: () {},
+          onPressed: () {},
             icon: Icon(
               Icons.settings_input_component_rounded,
               color: Theme.of(context).colorScheme.onBackground,
@@ -123,16 +119,3 @@ class _utility {
   );
 }
 
-// isLoading ? const LoadingBar() : ListView.builder(
-//         itemCount: item.length,
-//         itemBuilder: (context, index) {
-//         return Card(
-//           child: ListTile(
-//           onTap: () => gotoDetails(item[index]),
-//           title: Text(item[index].customer ?? ""),
-//           subtitle: Text(item[index].ship_city ?? ""),
-//           leading: Text(item[index].product_id ?? ""),
-//           trailing: Text(item[index].date ?? ""),
-//           ));
-//       },
-//     );

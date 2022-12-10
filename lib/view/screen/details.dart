@@ -3,7 +3,6 @@ import 'package:final_project/model/StockData.dart';
 import 'package:final_project/product/widget/appbar.dart';
 import 'package:flutter/material.dart';
 
-
 class Details extends StatelessWidget {
   const Details({super.key, required this.model});
   final StockData model;
@@ -16,11 +15,20 @@ class Details extends StatelessWidget {
           Expanded(child: _modelInformation()),
           Expanded(
             flex: 2,
-            child: DChartPie(data:  [
-             {'domain': 'React Native', 'measure': int.parse(model.product_id.toString())},
-             {'domain': 'Cordova', 'measure': int.parse(model.product_option_value_id.toString())},
-            ], 
-            fillColor: ((pieData, index) => Colors.purple)),
+            child: DChartLine(
+              data: const [
+                {
+                  'id': 'Line',
+                  'data': [
+                    {'domain': 0, 'measure': 4.1},
+                    {'domain': 2, 'measure': 4},
+                    {'domain': 3, 'measure': 6},
+                    {'domain': 4, 'measure': 1},
+                  ],
+                },
+              ],
+              lineColor: (lineData, index, id) => Colors.amber,
+            ),
           )
         ],
       ),
@@ -31,19 +39,19 @@ class Details extends StatelessWidget {
     return Column(
       children: [
         Card(
-        child: ListTile(
-        title: Text("Müşteri: ${model.customer ?? ""}"),
-        subtitle: Text("Konum: ${model.ship_city ?? ""}"),
-        leading: Text(model.product_id ?? ""),
-        trailing: Text(model.date ?? ""),
+          child: ListTile(
+            title: Text("Müşteri: ${model.customer ?? ""}"),
+            subtitle: Text("Konum: ${model.ship_city ?? ""}"),
+            leading: Text(model.product_id ?? ""),
+            trailing: Text(model.date ?? ""),
           ),
         ),
         Card(
-        child: ListTile(
-        title: Text(model.product_option_name ?? ""),
-        subtitle: Text("Fiyat: ${model.price ?? ""}"),
-        leading: Text(model.tax ?? ""),
-        trailing: Text(model.product_supplier ?? ""),
+          child: ListTile(
+            title: Text(model.product_option_name ?? ""),
+            subtitle: Text("Fiyat: ${model.price ?? ""}"),
+            leading: Text(model.tax ?? ""),
+            trailing: Text(model.product_supplier ?? ""),
           ),
         )
       ],

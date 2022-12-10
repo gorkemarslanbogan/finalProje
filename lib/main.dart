@@ -14,6 +14,7 @@ Future<void> main() async {
       ChangeNotifierProvider<theme_provider>(create: (_) => theme_provider()),
       ChangeNotifierProvider<HomeScreenProvider>(create: (_) => HomeScreenProvider())
       ]));
+      
 }
 class FinalApp extends StatefulWidget {
    const FinalApp({Key? key}) : super(key: key);

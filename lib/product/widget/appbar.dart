@@ -16,7 +16,7 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
                 }, icon:  Icon(Icons.qr_code_scanner,color: Theme.of(context).colorScheme.onBackground,)),
                 IconButton(onPressed: (){}, icon:  Icon(Icons.search,color:Theme.of(context).colorScheme.onBackground,))
               ],
-              leading: (backButton == true) ? BackButton(color: Theme.of(context).colorScheme.shadow) : null,
+              leading: (backButton == true) ? BackButton(color: Theme.of(context).colorScheme.onBackground) : null,
               backgroundColor: Colors.transparent,
               elevation: 0,
               title: Text('Stock Manager',style: Theme.of(context).textTheme.headline5?.copyWith(
