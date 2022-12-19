@@ -1,10 +1,8 @@
 import 'package:final_project/core/widget/loading_bar.dart';
 import 'package:final_project/product/utils/app_utilts.dart';
 import 'package:final_project/product/widget/medium_text_widget.dart';
-import 'package:final_project/view/screen/homescreen.dart';
 import 'package:final_project/view/screen/mainscreen.dart';
 import 'package:final_project/viewmodel/homescreen_provider.dart';
-import 'package:final_project/viewmodel/homescreen_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';

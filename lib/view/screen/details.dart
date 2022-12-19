@@ -40,18 +40,18 @@ class Details extends StatelessWidget {
       children: [
         Card(
           child: ListTile(
-            title: Text("Müşteri: ${model.customer ?? ""}"),
-            subtitle: Text("Konum: ${model.ship_city ?? ""}"),
-            leading: Text(model.product_id ?? ""),
-            trailing: Text(model.date ?? ""),
+            title: Text("Müşteri: ${model.order?.musteriAdi ?? ""}"),
+            subtitle: Text("Konum: ${model.order?.il ?? ""}"),
+            leading: Text(model.order?.siparisNo ?? ""),
+            trailing: Text(model.order?.tarih ?? ""),
           ),
         ),
         Card(
           child: ListTile(
-            title: Text(model.product_option_name ?? ""),
-            subtitle: Text("Fiyat: ${model.price ?? ""}"),
-            leading: Text(model.tax ?? ""),
-            trailing: Text(model.product_supplier ?? ""),
+            title: Text(model.order?.musteriAdi ?? ""),
+            subtitle: Text("Fiyat: ${model.order?.fiyat ?? ""}"),
+            leading: Text(model.order?.pazarYeri ?? ""),
+            trailing: Text(model.order?.siparisNo ?? ""),
           ),
         )
       ],

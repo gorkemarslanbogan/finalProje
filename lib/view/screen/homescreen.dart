@@ -1,6 +1,8 @@
 import 'package:final_project/model/StockData.dart';
+import 'package:final_project/viewmodel/homescreen_provider.dart';
 import 'package:final_project/viewmodel/homescreen_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../product/widget/product_details_container.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,10 +23,10 @@ class _HomeScreenState extends homescreen_viewmodel {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _containers(itemLength: item.length),
+              _containers(itemLength: context.watch<HomeScreenProvider>().item.length),
               _utility.twentyspace,
-              _productTexts(item: item),
-              isLoading ? const Center(child: CircularProgressIndicator(color: Colors.blue),) : _productListview(context)
+              _productTexts(item: context.watch<HomeScreenProvider>().item),
+              context.watch<HomeScreenProvider>().isLoading ? const Center(child: CircularProgressIndicator(color: Colors.blue),) : _productListview(context)
             ],
           ),
         ),
@@ -38,14 +40,15 @@ class _HomeScreenState extends homescreen_viewmodel {
                 width: MediaQuery.of(context).size.width,
                 child:  ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: item.length,
+                itemCount: context.watch<HomeScreenProvider>().item.length,
                 itemBuilder: (context, index) {
+                List<StockData> data = context.watch<HomeScreenProvider>().item;
                   return ListTile(
-                    onTap: () => gotoDetails(item[index]),
-                    title: Text(item[index].customer ?? ""),
-                    subtitle: Text(item[index].ship_city ?? ""),
-                    leading: Text(item[index].product_id ?? ""),
-                    trailing: IconButton(onPressed: () => gotoDetails(item[index]), icon: const Icon(Icons.navigate_next_rounded)),
+                    onTap: () => gotoDetails(data[index]),
+                    title: Text(data[index].order?.musteriAdi ?? ""),
+                    subtitle: Text(data[index].order?.marka ?? ""),
+                    leading: Text(data[index].order?.marka ?? ""),
+                    trailing: IconButton(onPressed: () => gotoDetails(data[index]), icon: const Icon(Icons.navigate_next_rounded)),
                   );
                 },
               ),
