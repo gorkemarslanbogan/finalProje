@@ -1,12 +1,8 @@
 
-
-import 'dart:convert';
-
 import 'package:final_project/core/service/IBaseNetwork.dart';
 import 'package:final_project/model/StockData.dart';
-import 'package:final_project/product/utils/app_utilts.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
+import 'package:final_project/view/screen/details.dart';
+import 'package:flutter/material.dart';
 
 class HomeScreenProvider extends ChangeNotifier {
   HomeScreenProvider(){
@@ -25,5 +21,8 @@ class HomeScreenProvider extends ChangeNotifier {
     _isLoading = !_isLoading;
     notifyListeners();
   }
-
+  VoidCallbackAction? gotoDetails(StockData model, BuildContext context)
+  {
+   Navigator.of(context).push(MaterialPageRoute(builder: ((context) => Details(model: model))));
+  }
 }

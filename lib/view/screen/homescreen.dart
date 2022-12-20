@@ -1,4 +1,6 @@
 import 'package:final_project/model/StockData.dart';
+import 'package:final_project/product/utils/app_utilts.dart';
+import 'package:final_project/view/screen/all_product.dart';
 import 'package:final_project/viewmodel/homescreen_provider.dart';
 import 'package:final_project/viewmodel/homescreen_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -16,15 +18,15 @@ class _HomeScreenState extends homescreen_viewmodel {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+      padding: AppUtility.GeneralAppPadding,
       child: SizedBox(
-        height: MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height-15,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _containers(itemLength: context.watch<HomeScreenProvider>().item.length),
-              _utility.twentyspace,
+               AppUtility.GeneralSpace,
               _productTexts(item: context.watch<HomeScreenProvider>().item),
               context.watch<HomeScreenProvider>().isLoading ? const Center(child: CircularProgressIndicator(color: Colors.blue),) : _productListview(context)
             ],
@@ -36,19 +38,22 @@ class _HomeScreenState extends homescreen_viewmodel {
 
   Widget _productListview(BuildContext context) {
     return SizedBox(
-                height: MediaQuery.of(context).size.height *0.80,
+                height: MediaQuery.of(context).size.height *0.82,
                 width: MediaQuery.of(context).size.width,
                 child:  ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.zero,
                 itemCount: context.watch<HomeScreenProvider>().item.length,
                 itemBuilder: (context, index) {
                 List<StockData> data = context.watch<HomeScreenProvider>().item;
                   return ListTile(
-                    onTap: () => gotoDetails(data[index]),
+                    onTap: () {
+                      context.read<HomeScreenProvider>().gotoDetails(data[index], context);
+                    },
                     title: Text(data[index].order?.musteriAdi ?? ""),
                     subtitle: Text(data[index].order?.marka ?? ""),
-                    leading: Text(data[index].order?.marka ?? ""),
-                    trailing: IconButton(onPressed: () => gotoDetails(data[index]), icon: const Icon(Icons.navigate_next_rounded)),
+                    leading: Text(data[index].order?.siparisNo ?? ""),
+                    trailing: const Icon(Icons.navigate_next_rounded)
                   );
                 },
               ),
@@ -74,7 +79,9 @@ final List<StockData>? item;
               ?.copyWith(color: Theme.of(context).colorScheme.onBackground, fontWeight: FontWeight.w300),
         ),
         TextButton.icon(
-          onPressed: () {},
+          onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: ((context) => const SeeAllProduct())));
+          },
             icon: Icon(
               Icons.settings_input_component_rounded,
               color: Theme.of(context).colorScheme.onBackground,
@@ -100,7 +107,7 @@ class _containers extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CustomContainer(
-          background: Color(0xff0080f6),
+          background: const Color(0xff0080f6),
           productCount: itemLength.toString(),
           title: "Product In",
         ),
@@ -114,11 +121,4 @@ class _containers extends StatelessWidget {
   }
 }
 
-class _utility {
-  _utility._();
-  static const black = Color.fromARGB(255, 73, 73, 73);
-  static const twentyspace = SizedBox(
-    height: 20,
-  );
-}
 

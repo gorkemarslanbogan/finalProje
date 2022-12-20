@@ -47,5 +47,5 @@ class CustomContainer extends StatelessWidget {
 
 class _utility {
   _utility._();
-  static final spacing = SizedBox(height: 10,);
+  static final spacing = const SizedBox(height: 10,);
 }

@@ -1,7 +1,7 @@
 import 'package:final_project/product/widget/appbar.dart';
 import 'package:final_project/view/screen/all_product.dart';
+import 'package:final_project/view/screen/charts_screen.dart';
 import 'package:final_project/view/screen/homescreen.dart';
-import 'package:final_project/view/screen/login_page.dart';
 import 'package:final_project/view/screen/settings_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   static const  List<Widget> _pages  = [
     HomeScreen(),
     SeeAllProduct(),
-    SignInPage(),
+    ChartsScreen(),
     SettingScreen(),
   ];
 
