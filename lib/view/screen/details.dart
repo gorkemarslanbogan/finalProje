@@ -1,5 +1,4 @@
 import 'package:final_project/model/StockData.dart';
-import 'package:final_project/product/utils/app_utilts.dart';
 import 'package:final_project/product/widget/appbar.dart';
 import 'package:final_project/view/screen/charts_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,8 @@ class Details extends StatefulWidget {
 }
 
 class _DetailsState extends State<Details> {
-    void initState() {
+    @override
+      void initState() {
     super.initState();
     _tooltipBehavior = TooltipBehavior();
   }
@@ -27,7 +27,7 @@ late TooltipBehavior _tooltipBehavior;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppbar(backButton: true),
+      appBar:  MyAppbar(backButton: true),
       body: SizedBox(
         height: MediaQuery.of(context).size.height*1.08,
         child: SingleChildScrollView(

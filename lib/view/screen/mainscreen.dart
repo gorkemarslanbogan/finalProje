@@ -35,7 +35,7 @@ class _MainScreenState extends State<MainScreen> {
       return SafeArea(child: 
           Scaffold(
           bottomNavigationBar: _navigationBar(),
-          appBar:const MyAppbar(),
+          appBar: MyAppbar(),
           body: _pages[_selectedIndex]));
   }
 
