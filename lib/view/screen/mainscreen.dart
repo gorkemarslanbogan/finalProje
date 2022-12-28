@@ -1,7 +1,9 @@
 import 'package:final_project/product/widget/appbar.dart';
 import 'package:final_project/view/screen/all_product.dart';
 import 'package:final_project/view/screen/charts_screen.dart';
+import 'package:final_project/view/screen/customers.dart';
 import 'package:final_project/view/screen/homescreen.dart';
+import 'package:final_project/view/screen/product_info.dart';
 import 'package:final_project/view/screen/settings_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +19,8 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   static const  List<Widget> _pages  = [
     HomeScreen(),
-    SeeAllProduct(),
+    productInfo(),
+    customerInfo(),
     ChartsScreen(),
     SettingScreen(),
   ];
@@ -49,6 +52,7 @@ class _MainScreenState extends State<MainScreen> {
           items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ""),
           BottomNavigationBarItem(icon: Icon(Icons.check_box_outline_blank_outlined), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.person_search_rounded), label: ""),
           BottomNavigationBarItem(icon: Icon(Icons.add_chart_rounded), label: ""),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: "")
         ],

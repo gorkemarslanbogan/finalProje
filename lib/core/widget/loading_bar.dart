@@ -5,5 +5,5 @@ import 'package:lottie/lottie.dart';
 
 
 class LoadingBar extends Center {
-   LoadingBar({super.key}) : super(child: Lottie.asset(AppUtility.LOADING_BAR_PATH, fit: BoxFit.fill));
+   LoadingBar({super.key}) : super(child: Lottie.asset(AppUtility.LOADING_BAR_PATH, fit: BoxFit.contain,));
 }

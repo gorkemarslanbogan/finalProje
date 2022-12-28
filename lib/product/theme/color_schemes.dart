@@ -23,7 +23,7 @@ class colorSheme {
   onErrorContainer: Color(0xFF410E0B),
   outline: Color(0xFF79747E),
   background: Color(0xFFFFFBFE),
-  onBackground: Color(0xFF1C1B1F),
+  onBackground: Color.fromARGB(255, 13, 13, 14),
   surface: Color(0xFFFFFBFE),
   onSurface: Color(0xFF1C1B1F),
   surfaceVariant: Color(0xFFE7E0EC),

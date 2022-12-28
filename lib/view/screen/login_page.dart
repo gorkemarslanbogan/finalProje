@@ -15,33 +15,7 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
-    return _LoginBody(height: height);
-  }
-}
-
-class _LoginBody extends StatelessWidget {
-  const _LoginBody({
-    Key? key,
-    required this.height,
-  }) : super(key: key);
-
-  final double height;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-       height: height*0.94,
-       child: SingleChildScrollView(
-        physics: const PageScrollPhysics(),
-       child: SizedBox( 
-         height: height,
-         child: Padding(
-           padding: AppUtility.GeneralAppPadding,
-           child: _ColumnItem(height: height),
-         ),
-       ),
-        ),
-      );
+    return _ColumnItem(height: height);
   }
 }
 
@@ -54,27 +28,22 @@ class _ColumnItem extends StatelessWidget {
   final double height;
   @override
   Widget build(BuildContext context) {
-    return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
+    return ListView(
+      physics: const ClampingScrollPhysics(),
+      padding: AppUtility.GeneralAppPadding,
     children: [
-       SizedBox(
-        height: height*0.45,
-        child:  Lottie.asset(AppUtility.SPLAHS_SCREEN_PATH,fit: BoxFit.contain),
-      ),
-     const Flexible(
-        flex: 2,
-        child:  mediumText(title: "Welcome to Stock Manager!")),
+       Lottie.asset(
+        reverse: true,
+        AppUtility.SPLAHS_SCREEN_PATH,fit: BoxFit.contain,height: height*0.45),
+     const Center(child: mediumText(title: "Welcome to Stock Manager!",)),
+     AppUtility.GeneralSpace,
+      const CustomtextField(hintText: "E-mail", inputType: TextInputType.emailAddress, icon: Icon(Icons.mail, color: Colors.grey,)),
       AppUtility.GeneralSpace,
-     const Flexible(
-        flex: 2,
-        child:  CustomtextField(hintText: "E-mail", inputType: TextInputType.emailAddress, icon: Icon(Icons.mail, color: Colors.grey,))),
-      AppUtility.GeneralSpace,
-      const Flexible(
-        flex: 2,
-        child: CustomtextField(hintText: "Password", inputType: TextInputType.visiblePassword, icon: Icon(Icons.visibility, color: Colors.grey,))),
+      const CustomtextField(hintText: "Password", inputType: TextInputType.visiblePassword, icon: Icon(Icons.visibility, color: Colors.grey,)),
       AppUtility.GeneralSpace,
       context.watch<HomeScreenProvider>().isLoading ?   
-      Flexible(flex: 3, child: LoadingBar()) : const _LoginButton(),
+     const Center(child: CircularProgressIndicator(color: Colors.amber,))
+      : const _LoginButton(),
     ],
      );
   }

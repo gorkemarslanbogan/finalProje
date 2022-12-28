@@ -17,28 +17,21 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends homescreen_viewmodel {
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return ListView(
+      physics: AppUtility.GeneralScrollPyhsics,
       padding: AppUtility.GeneralAppPadding,
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height-15,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _containers(itemLength: context.watch<HomeScreenProvider>().item.length),
-               AppUtility.GeneralSpace,
-              _productTexts(item: context.watch<HomeScreenProvider>().item),
-              context.watch<HomeScreenProvider>().isLoading ? const Center(child: CircularProgressIndicator(color: Colors.blue),) : _productListview(context)
-            ],
-          ),
-        ),
-      ),
+      children: [
+        _containers(itemLength: context.watch<HomeScreenProvider>().item.length),
+         AppUtility.GeneralSpace,
+        _productTexts(item: context.watch<HomeScreenProvider>().item),
+        _productListview(context)
+      ],
     );
   }
 
   Widget _productListview(BuildContext context) {
     return SizedBox(
-                height: MediaQuery.of(context).size.height *0.82,
+                height: MediaQuery.of(context).size.height *0.82+15,
                 width: MediaQuery.of(context).size.width,
                 child:  ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
@@ -46,18 +39,22 @@ class _HomeScreenState extends homescreen_viewmodel {
                 itemCount: context.watch<HomeScreenProvider>().item.length,
                 itemBuilder: (context, index) {
                 List<StockData> data = context.watch<HomeScreenProvider>().item;
-                  return ListTile(
-                    onTap: () {
-                      context.read<HomeScreenProvider>().gotoDetails(data[index], context);
-                    },
-                    title: Text(data[index].order?.musteriAdi ?? ""),
-                    subtitle: Text(data[index].order?.marka ?? ""),
-                    leading: Text(data[index].order?.siparisNo ?? ""),
-                    trailing: const Icon(Icons.navigate_next_rounded)
-                  );
+                  return _productCard(context, data, index);
                 },
               ),
             );
+  }
+
+  ListTile _productCard(BuildContext context, List<StockData> data, int index) {
+    return ListTile(
+                  onTap: () {
+                    context.read<HomeScreenProvider>().gotoDetails(data[index], context);
+                  },
+                  title: Text(data[index].order?.musteriAdi ?? ""),
+                  subtitle: Text(data[index].order?.marka ?? ""),
+                  leading: Text(data[index].order?.siparisNo ?? ""),
+                  trailing: const Icon(Icons.navigate_next_rounded)
+                );
   }
 }
 

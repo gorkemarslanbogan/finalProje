@@ -30,17 +30,15 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
                 icon: Icon(Icons.qr_code_scanner,color: Theme.of(context).colorScheme.onBackground,),
                 itemBuilder: (context) => <PopupMenuEntry<String>> [
                   PopupMenuItem<String>(
-                  onTap: (){BarcodeScanner.ScanBarcode(ScannerType.PRODUCT);},
                   child: TextButton.icon(icon: Icon(Icons.paste_rounded,color: Theme.of(context).colorScheme.onBackground,), label: Text(_item.first,style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                    color: Colors.black,
-                  ),), onPressed: (){},),
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ),), onPressed: () async {await BarcodeScanner.ScanBarcode(ScannerType.PRODUCT);},),
           ),
                   PopupMenuItem<String>(
-                  onTap: (){BarcodeScanner.ScanBarcode(ScannerType.PRODUCT);},
                   value: _item[1],
                   child: TextButton.icon(icon: Icon(Icons.local_shipping_rounded,color: Theme.of(context).colorScheme.onBackground,), label: Text(_item.last,style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                    color: Colors.black,
-                  ),), onPressed: (){},),
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ),), onPressed: () async {await BarcodeScanner.ScanBarcode(ScannerType.ORDERS);},),
           ),
                 ]
               ,);
