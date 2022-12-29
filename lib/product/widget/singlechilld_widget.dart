@@ -10,18 +10,14 @@ class customSingleChildWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return SizedBox(
-    height: height,
-    child: SingleChildScrollView(
-      physics: AppUtility.GeneralScrollPyhsics,
-      padding: EdgeInsets.zero,
-      child: Padding(
-        padding: AppUtility.GeneralAppPaddingForListview,
+      height: height,
+      child: SingleChildScrollView(
+        physics: AppUtility.GeneralScrollPyhsics,
+        padding: AppUtility.GeneralAppPadding,
         child: SizedBox(
           height: height,
-          child: child,
-        ),
+          child: child),
       ),
-    ),
-  );
+    );
   }
 }

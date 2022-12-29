@@ -4,9 +4,14 @@ import 'package:flutter/services.dart';
 
 
 class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
-   MyAppbar({super.key, this.backButton});
+   MyAppbar({super.key, this.backButton, this.title, this.enableTitle, this.appbarTitleIndex});
   final bool? backButton;
+  final String? title;
+  final bool? enableTitle;
+  final int? appbarTitleIndex; 
   final List<String> _item = ["Product Scan", "Order Scan"];
+  final List<String> _appBarName = ["Stock Manager", "Products", "Customer Info","Reports","Settings"];
+  static const int _appBarNameIndex = 0;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -18,10 +23,14 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
               leading: (backButton == true) ? BackButton(color: Theme.of(context).colorScheme.onBackground) : null,
               backgroundColor: Colors.transparent,
               elevation: 0,
-              title: Text('Stock Manager',style: Theme.of(context).textTheme.headline5?.copyWith(
-                color: Theme.of(context).colorScheme.onBackground,
-                fontWeight: FontWeight.w300
-              ),));
+              title: _appBarTitle(context, (enableTitle == true && title != null) ? title! : _appBarName[(appbarTitleIndex != null) ? appbarTitleIndex! : _appBarNameIndex]));
+  }
+
+  Text _appBarTitle(BuildContext context, String title){
+    return Text(title, style: Theme.of(context).textTheme.headline5?.copyWith(
+              color: Theme.of(context).colorScheme.onBackground,
+              fontWeight: FontWeight.w300
+            ),);
   }
 
   PopupMenuButton<String> _scannerPopupMenu(BuildContext context) {

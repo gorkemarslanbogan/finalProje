@@ -1,4 +1,5 @@
 import 'package:final_project/product/utils/app_utilts.dart';
+import 'package:final_project/product/widget/appbar.dart';
 import 'package:final_project/product/widget/medium_text_widget.dart';
 import 'package:final_project/product/widget/singlechilld_widget.dart';
 import 'package:final_project/viewmodel/homescreen_provider.dart';
@@ -11,30 +12,21 @@ class customerInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return customSingleChildWidget(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-        const mediumText(title: "Müşteri Bilgileri"),
-        AppUtility.GeneralSpaceSmall,
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.zero,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: context.watch<HomeScreenProvider>().item.length,
-              itemBuilder: (BuildContext context, int index) {
-                final data = context.watch<HomeScreenProvider>().item;
-                return Card(
-                  child: ListTile(
-                    title: Text("Müşteri Adı: ${data[index].order?.musteriAdi}"),
-                    subtitle: Text("Yaşadığı İl: ${data[index].order?.il}"),
-                  ),
-                );
-              },
+    return Scaffold(
+      body: ListView.builder(
+        shrinkWrap: true,
+        padding: EdgeInsets.zero,
+        physics: const ScrollPhysics(),
+        itemCount: context.watch<HomeScreenProvider>().item.length,
+        itemBuilder: (BuildContext context, int index) {
+          final data = context.watch<HomeScreenProvider>().item;
+          return Card(
+            child: ListTile(
+              title: Text("Müşteri Adı: ${data[index].order?.musteriAdi}"),
+              subtitle: Text("Yaşadığı İl: ${data[index].order?.il}"),
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

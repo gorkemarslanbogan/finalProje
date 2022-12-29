@@ -42,7 +42,7 @@ class _ColumnItem extends StatelessWidget {
       const CustomtextField(hintText: "Password", inputType: TextInputType.visiblePassword, icon: Icon(Icons.visibility, color: Colors.grey,)),
       AppUtility.GeneralSpace,
       context.watch<HomeScreenProvider>().isLoading ?   
-     const Center(child: CircularProgressIndicator(color: Colors.amber,))
+     const LoadingBar()
       : const _LoginButton(),
     ],
      );
