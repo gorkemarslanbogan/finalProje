@@ -12,6 +12,7 @@ class AppUtility {
   static const GeneralSpaceSmall = SizedBox(height: 5);
   static const GeneralScrollPyhsics = BouncingScrollPhysics();
   static const AppDivider =  Divider(thickness: 1,);
+  static const PageNames  = ["Stock Manager", "Products", "Customer Info","Reports","Settings"];
   static const LOCAL_DATA_PATH = "assets/order_product_list.json";
   static const SPLAHS_SCREEN_PATH = "assets/splash_lottie.json";
   static const LOADING_BAR_PATH = "assets/loading_bar.json";

@@ -24,15 +24,15 @@ class CustomContainer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(child: Icon( (title == "Product In") ? Icons.incomplete_circle : Icons.track_changes_outlined, color: _WhiteColor, size: 35,)),
-            _utility.spacing,
-            _utility.spacing,
+            AppUtility.GeneralSpaceMedium,
+            AppUtility.GeneralSpaceMedium,
             Expanded(
               child: Text(productCount,style: Theme.of(context).textTheme.headline5?.copyWith(
                 color: _WhiteColor,
                 fontWeight: FontWeight.w400
               ),),
             ),
-            _utility.spacing,
+            AppUtility.GeneralSpaceMedium,
             Expanded(
               child: Text(title, style: Theme.of(context).textTheme.subtitle1?.copyWith(
                 color: _WhiteColor,
@@ -43,9 +43,4 @@ class CustomContainer extends StatelessWidget {
       ),
     );
   }
-}
-
-class _utility {
-  _utility._();
-  static final spacing = const SizedBox(height: 10,);
 }

@@ -1,7 +1,4 @@
 import 'package:final_project/product/utils/app_utilts.dart';
-import 'package:final_project/product/widget/appbar.dart';
-import 'package:final_project/product/widget/medium_text_widget.dart';
-import 'package:final_project/product/widget/singlechilld_widget.dart';
 import 'package:final_project/viewmodel/homescreen_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

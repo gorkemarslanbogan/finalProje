@@ -4,14 +4,11 @@ import 'package:flutter/services.dart';
 
 
 class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
-   MyAppbar({super.key, this.backButton, this.title, this.enableTitle, this.appbarTitleIndex});
+   MyAppbar({super.key, this.backButton, this.title, this.enableTitle,});
   final bool? backButton;
   final String? title;
   final bool? enableTitle;
-  final int? appbarTitleIndex; 
   final List<String> _item = ["Product Scan", "Order Scan"];
-  final List<String> _appBarName = ["Stock Manager", "Products", "Customer Info","Reports","Settings"];
-  static const int _appBarNameIndex = 0;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -23,7 +20,7 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
               leading: (backButton == true) ? BackButton(color: Theme.of(context).colorScheme.onBackground) : null,
               backgroundColor: Colors.transparent,
               elevation: 0,
-              title: _appBarTitle(context, (enableTitle == true && title != null) ? title! : _appBarName[(appbarTitleIndex != null && 0<=appbarTitleIndex! && appbarTitleIndex!<5 ) ? appbarTitleIndex! : _appBarNameIndex]));
+              title: _appBarTitle(context,(enableTitle == true && title != null ? title! : "Stock Manager")));
   }
 
   Text _appBarTitle(BuildContext context, String title){

@@ -1,6 +1,5 @@
 import 'package:final_project/product/utils/app_utilts.dart';
 import 'package:final_project/product/theme/theme_managment.dart';
-import 'package:final_project/product/widget/medium_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

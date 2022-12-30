@@ -1,5 +1,5 @@
+import 'package:final_project/product/utils/app_utilts.dart';
 import 'package:final_project/product/widget/appbar.dart';
-import 'package:final_project/view/screen/all_orders.dart';
 import 'package:final_project/view/screen/charts_screen.dart';
 import 'package:final_project/view/screen/customers.dart';
 import 'package:final_project/view/screen/homescreen.dart';
@@ -24,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
     ChartsScreen(),
     SettingScreen(),
   ];
-
+  
   int _selectedIndex = 0;
 
   void _onTapIndex(int index) {
@@ -38,10 +38,12 @@ class _MainScreenState extends State<MainScreen> {
       return SafeArea(
         child: Scaffold(
           bottomNavigationBar: _navigationBar(),
-          appBar: MyAppbar(appbarTitleIndex: _selectedIndex),
-
+          appBar: _customAppbar(AppUtility.PageNames,_selectedIndex),
           body: _pages[_selectedIndex]));
   }
+
+  MyAppbar _customAppbar(List<String> item, int appBarNameIndex) { 
+    return MyAppbar(title: item[appBarNameIndex],enableTitle: true,);}
 
   BottomNavigationBar _navigationBar() {
     return BottomNavigationBar(
