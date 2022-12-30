@@ -17,12 +17,6 @@ class SettingScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppUtility.GeneralSpace,
-          AppUtility.GeneralSpace,
-          const Flexible(
-            flex: 2,
-            fit: FlexFit.tight,
-            child: mediumText(title: "Settings")),
-            AppUtility.GeneralSpace,
           const Flexible(
             flex: 2,
             fit: FlexFit.tight,

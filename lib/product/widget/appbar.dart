@@ -23,7 +23,7 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
               leading: (backButton == true) ? BackButton(color: Theme.of(context).colorScheme.onBackground) : null,
               backgroundColor: Colors.transparent,
               elevation: 0,
-              title: _appBarTitle(context, (enableTitle == true && title != null) ? title! : _appBarName[(appbarTitleIndex != null) ? appbarTitleIndex! : _appBarNameIndex]));
+              title: _appBarTitle(context, (enableTitle == true && title != null) ? title! : _appBarName[(appbarTitleIndex != null && 0<=appbarTitleIndex! && appbarTitleIndex!<5 ) ? appbarTitleIndex! : _appBarNameIndex]));
   }
 
   Text _appBarTitle(BuildContext context, String title){

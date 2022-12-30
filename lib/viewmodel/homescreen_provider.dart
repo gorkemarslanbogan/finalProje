@@ -1,7 +1,7 @@
 
 import 'package:final_project/core/service/IBaseNetwork.dart';
 import 'package:final_project/model/StockData.dart';
-import 'package:final_project/view/screen/details.dart';
+import 'package:final_project/view/screen/product_details.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreenProvider extends ChangeNotifier {

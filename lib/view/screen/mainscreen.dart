@@ -1,5 +1,5 @@
 import 'package:final_project/product/widget/appbar.dart';
-import 'package:final_project/view/screen/all_product.dart';
+import 'package:final_project/view/screen/all_orders.dart';
 import 'package:final_project/view/screen/charts_screen.dart';
 import 'package:final_project/view/screen/customers.dart';
 import 'package:final_project/view/screen/homescreen.dart';
@@ -35,8 +35,8 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-      return SafeArea(child: 
-          Scaffold(
+      return SafeArea(
+        child: Scaffold(
           bottomNavigationBar: _navigationBar(),
           appBar: MyAppbar(appbarTitleIndex: _selectedIndex),
 

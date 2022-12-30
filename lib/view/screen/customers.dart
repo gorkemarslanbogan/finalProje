@@ -15,13 +15,14 @@ class customerInfo extends StatelessWidget {
     return Scaffold(
       body: ListView.builder(
         shrinkWrap: true,
-        padding: EdgeInsets.zero,
-        physics: const ScrollPhysics(),
+        padding: AppUtility.GeneralAppPadding,
+        physics: AppUtility.GeneralScrollPyhsics,
         itemCount: context.watch<HomeScreenProvider>().item.length,
         itemBuilder: (BuildContext context, int index) {
           final data = context.watch<HomeScreenProvider>().item;
           return Card(
             child: ListTile(
+              leading: const Icon(Icons.person),
               title: Text("Müşteri Adı: ${data[index].order?.musteriAdi}"),
               subtitle: Text("Yaşadığı İl: ${data[index].order?.il}"),
             ),

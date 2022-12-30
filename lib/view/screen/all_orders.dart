@@ -5,18 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 
-class SeeAllProduct extends StatefulWidget {
-  const SeeAllProduct({super.key});
+class SeeAllOrders extends StatefulWidget {
+  const SeeAllOrders({super.key});
   @override
-  State<SeeAllProduct> createState() => _SeeAllProductState();
+  State<SeeAllOrders> createState() => _SeeAllOrdersState();
 }
 
-class _SeeAllProductState extends State<SeeAllProduct> {
+class _SeeAllOrdersState extends State<SeeAllOrders> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: MyAppbar(backButton: true,enableTitle: true,title: "All Product"),
+        appBar: MyAppbar(backButton: true,enableTitle: true,title: "All Orders"),
         body: _productListview(context),
       ),
     );

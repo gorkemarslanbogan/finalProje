@@ -1,6 +1,6 @@
 import 'package:final_project/model/StockData.dart';
 import 'package:final_project/product/utils/app_utilts.dart';
-import 'package:final_project/view/screen/all_product.dart';
+import 'package:final_project/view/screen/all_orders.dart';
 import 'package:final_project/viewmodel/homescreen_provider.dart';
 import 'package:final_project/viewmodel/homescreen_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +69,7 @@ final List<StockData>? item;
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          "Product List",
+          "Order List",
           style: Theme.of(context)
               .textTheme
               .headline5
@@ -77,7 +77,7 @@ final List<StockData>? item;
         ),
         TextButton.icon(
           onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: ((context) => const SeeAllProduct())));
+            Navigator.of(context).push(MaterialPageRoute(builder: ((context) => const SeeAllOrders())));
           },
             icon: Icon(
               Icons.settings_input_component_rounded,
