@@ -1,13 +1,15 @@
+import 'package:final_project/model/StockData.dart';
 import 'package:final_project/product/utils/app_utilts.dart';
 import 'package:final_project/product/widget/appbar.dart';
 import 'package:final_project/product/widget/medium_text_widget.dart';
+import 'package:final_project/product/widget/product_card.dart';
 import 'package:final_project/product/widget/smal_text.dart';
 import 'package:flutter/material.dart';
 
 
 class orderDetails extends StatelessWidget {
-  const orderDetails({super.key});
-
+  const orderDetails({super.key, required this.item});
+  final List<StockData> item;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +21,7 @@ class orderDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children:  [
             Card(
+              color: Theme.of(context).colorScheme.onSecondary,
               shape: _RoundedBorder(context),
               child: Container(
                 padding: AppUtility.ContainerSymmetricPadding,
@@ -32,7 +35,20 @@ class orderDetails extends StatelessWidget {
             AppUtility.GeneralSpaceSmall,
             _shippingAdressCard(context),
             AppUtility.GeneralSpace,
-            const mediumText(title: "Ürünler")
+            const mediumText(title: "Ürünler"),
+            AppUtility.GeneralSpaceSmall,
+           Expanded(
+             child: ListView.separated(
+               itemCount: 3,
+               physics: AppUtility.GeneralScrollPyhsics,
+               itemBuilder: (BuildContext context, int index) {
+                 return  productCard(data: item.first);
+               },
+               separatorBuilder: (context, index) {
+                 return const Divider();
+               },
+             ),
+           ),
           ],
         ),
       ),
@@ -43,6 +59,7 @@ class orderDetails extends StatelessWidget {
     return SizedBox(
             height: MediaQuery.of(context).size.height*00.11,
             child: Card(
+              color: Theme.of(context).colorScheme.onSecondary,
               shape: _RoundedBorder(context),
               child: const Center(
                 child:  ListTile(
@@ -118,3 +135,11 @@ class orderDetails extends StatelessWidget {
                 side: BorderSide(color: Theme.of(context).colorScheme.outline,width: 0.9,));
   }
 }
+
+
+//sipariş kodu
+//tarih
+//ürünler liste şeklinde {ürün resmi,ürün kodu,birim fiyatı,siparişte kaç adet sipariş edildiği}
+//müşteri adsoyad kargo adresi
+//toplam tutar
+//satış kanalı hepsiburada , trendyol,amazon,n11

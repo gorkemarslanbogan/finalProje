@@ -10,7 +10,7 @@ class colorSheme {
   primaryContainer: Color(0xffffefe4),
   onPrimaryContainer: Color(0xffff6b00),
   secondary: Color(0xFF625B71),
-  onSecondary: Color(0xFFFFFFFF),
+  onSecondary:Color.fromARGB(159, 231, 231, 231),
   secondaryContainer: Color(0xffffe7ed),
   onSecondaryContainer: Color(0xfffd2253),
   tertiary: Color(0xFF7D5260),

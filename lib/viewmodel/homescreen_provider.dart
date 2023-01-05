@@ -1,8 +1,10 @@
 
 import 'package:final_project/core/service/IBaseNetwork.dart';
 import 'package:final_project/model/StockData.dart';
+import 'package:final_project/view/screen/orders_details.dart';
 import 'package:final_project/view/screen/product_details.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreenProvider extends ChangeNotifier {
   HomeScreenProvider(){
@@ -23,6 +25,6 @@ class HomeScreenProvider extends ChangeNotifier {
   }
   VoidCallbackAction? gotoDetails(StockData model, BuildContext context)
   {
-   Navigator.of(context).push(MaterialPageRoute(builder: ((context) => Details(model: model))));
+   Navigator.of(context).push(MaterialPageRoute(builder: ((context) =>  orderDetails(item: context.watch<HomeScreenProvider>().item))));
   }
 }
